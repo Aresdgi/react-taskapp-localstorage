@@ -1,4 +1,5 @@
 import { useState } from "react"; //importa useState de react
+import React from 'react'; //importa React en versiones anteriores
 
 export const TaskCreator = ({ createNewTask }) => {
   //crea un componente llamado TaskCreator que recibe las props
