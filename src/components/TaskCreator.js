@@ -7,7 +7,7 @@ export const TaskCreator = ({ createNewTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createNewTask(newTaskName); //ejecuta la funcion createNewTask que viene en las props de TaskCreator
-    localStorage.setItem("task", newTaskName); //guarda el valor de newTaskName en el local storage
+    
     setNewTaskName(""); //resetea el valor de newTaskName
   };
   return (
