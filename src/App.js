@@ -29,18 +29,36 @@ function App() {
     if (data) {
       setTasksItems(JSON.parse(data));
     }
-  }, []); //se llama ala funcion cada vez que el componente se monta y carga las tareas del local storage
+  }, []); //se llama a la funcion cada vez que el componente se monta y carga las tareas del local storage
+
+  const cleanTasks = () => {
+    setTasksItems(tasksItems.filter(task => !task.done))
+    setShowCompleted(false)
+  }
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasksItems));
   }, [tasksItems]); //se llama ala funcion cada vez que el estado tasksItems cambia y los muestra en el local storage
 
   return (
-    <div className="App">
-      <TaskCreator createNewTask={createNewTask} />
-      <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
-      <VisibilityControl setShowCompleted={(checked) => setShowCompleted(checked)} />
-    </div>
+    <main className="bg-dark vh-100 text-white">
+      <div className="container col-md-4 offset-md-4">
+        <TaskCreator createNewTask={createNewTask} />
+        <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
+        <VisibilityControl
+          isChecked={showCompleted}
+          setShowCompleted={(checked) => setShowCompleted(checked)}
+          cleanTasks={cleanTasks}
+        />
+        {showCompleted === true && (
+          <TaskTable
+            tasks={tasksItems}
+            toggleTask={toggleTask}
+            showCompleted={showCompleted}
+          />
+        )}
+      </div>
+    </main>
   );
 } //Le pasamos la tabla de tareas y la funcion toggleTask a TaskTable
 //toggleTask es una funcion que se encarga de cambiar el estado de done de una tarea
