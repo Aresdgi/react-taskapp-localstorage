@@ -3,7 +3,7 @@ import React from 'react'; //importa React en versiones anteriores
 
 export const TaskCreator = ({ createNewTask }) => {
   //crea un componente llamado TaskCreator que recibe las props
-  const [newTaskName, setNewTaskName] = useState(""); //crea un estado llamado newTaskName y una funcion para actualizarlo llamada setNewTaskName
+  const [newTaskName, setNewTaskName] = useState([]); //crea un estado llamado newTaskName y una funcion para actualizarlo llamada setNewTaskName
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -44,17 +44,16 @@ function App() {
     <main className="bg-dark vh-100 text-white">
       <div className="container col-md-4 offset-md-4">
         <TaskCreator createNewTask={createNewTask} />
-        <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
+        <TaskTable tasks={tasksItems.filter((task) => !task.done)} toggleTask={toggleTask} />
         <VisibilityControl
           isChecked={showCompleted}
           setShowCompleted={(checked) => setShowCompleted(checked)}
           cleanTasks={cleanTasks}
         />
-        {showCompleted === true && (
+        {showCompleted && (
           <TaskTable
-            tasks={tasksItems}
+            tasks={tasksItems.filter((task) => task.done)} //Mostramos solo las tareas completadas
             toggleTask={toggleTask}
-            showCompleted={showCompleted}
           />
         )}
       </div>
